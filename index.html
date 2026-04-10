@@ -1,0 +1,903 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Heavenly Couture – Manhattan Beach, CA</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Manrope:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --primary: oklch(32% 0.14 355);
+    --primary-light: oklch(42% 0.14 355);
+    --secondary: oklch(62% 0.12 65);
+    --neutral: oklch(58% 0.03 20);
+    --light: oklch(97% 0.01 25);
+    --dark: oklch(14% 0.04 355);
+    --dark-mid: oklch(19% 0.05 355);
+    --dark-surface: oklch(22% 0.05 350);
+    --text-main: oklch(93% 0.01 30);
+    --text-muted: oklch(72% 0.02 20);
+    --text-dim: oklch(55% 0.03 20);
+    --accent: oklch(62% 0.12 65);
+    --heading-font: 'Cormorant Garamond', Georgia, serif;
+    --body-font: 'Manrope', system-ui, sans-serif;
+    --radius: 4px;
+    --space-1: 4px;
+    --space-2: 8px;
+    --space-3: 12px;
+    --space-4: 16px;
+    --space-6: 24px;
+    --space-8: 32px;
+    --space-12: 48px;
+    --space-16: 64px;
+    --space-24: 96px;
+  }
+
+  *, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    font-size: 100%;
+  }
+
+  body {
+    background-color: var(--dark);
+    color: var(--text-main);
+    font-family: var(--body-font);
+    font-weight: 400;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+
+  img {
+    display: block;
+    max-width: 100%;
+  }
+
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  /* ── HEADER ── */
+  .site-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    padding: var(--space-4) var(--space-6);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: linear-gradient(to bottom, oklch(14% 0.05 355 / 0.95) 0%, oklch(14% 0.05 355 / 0) 100%);
+    backdrop-filter: blur(2px);
+  }
+
+  .site-logo {
+    font-family: var(--heading-font);
+    font-size: clamp(1.3rem, 3vw, 1.8rem);
+    font-weight: 300;
+    letter-spacing: 0.06em;
+    color: var(--text-main);
+    font-style: italic;
+  }
+
+  .site-logo span {
+    color: var(--accent);
+    font-style: normal;
+    font-weight: 500;
+  }
+
+  .header-cta {
+    display: inline-block;
+    background-color: var(--primary);
+    color: var(--text-main);
+    font-family: var(--body-font);
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: var(--space-2) var(--space-4);
+    border-radius: var(--radius);
+    border: 1px solid oklch(42% 0.14 355);
+    transition: background-color 200ms cubic-bezier(0.25, 1, 0.5, 1),
+                border-color 200ms cubic-bezier(0.25, 1, 0.5, 1);
+    white-space: nowrap;
+  }
+
+  @media (hover: hover) {
+    .header-cta:hover {
+      background-color: var(--primary-light);
+      border-color: oklch(52% 0.14 355);
+    }
+  }
+
+  .header-cta:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    position: relative;
+    min-height: 100svh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    overflow: hidden;
+    background-color: var(--dark);
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 80% 60% at 20% 80%, oklch(32% 0.14 355 / 0.18) 0%, transparent 60%),
+      radial-gradient(ellipse 50% 40% at 70% 20%, oklch(62% 0.12 65 / 0.06) 0%, transparent 55%);
+    z-index: 0;
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 2;
+    padding: var(--space-24) var(--space-6) var(--space-16);
+    max-width: 720px;
+  }
+
+  .hero-eyebrow {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    margin-bottom: var(--space-4);
+  }
+
+  .hero-eyebrow-line {
+    width: 32px;
+    height: 1px;
+    background-color: var(--accent);
+  }
+
+  .hero-eyebrow-text {
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--accent);
+  }
+
+  .hero-heading {
+    font-family: var(--heading-font);
+    font-size: clamp(3.2rem, 9vw, 7rem);
+    font-weight: 300;
+    line-height: 0.95;
+    letter-spacing: -0.01em;
+    color: var(--text-main);
+    margin-bottom: var(--space-6);
+  }
+
+  .hero-heading em {
+    font-style: italic;
+    color: var(--accent);
+  }
+
+  .hero-sub {
+    font-size: clamp(0.9rem, 2vw, 1rem);
+    font-weight: 300;
+    color: var(--text-muted);
+    max-width: 44ch;
+    margin-bottom: var(--space-8);
+    line-height: 1.75;
+  }
+
+  .hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-3);
+    align-items: center;
+  }
+
+  .btn-primary {
+    display: inline-block;
+    background-color: var(--primary);
+    color: var(--text-main);
+    font-family: var(--body-font);
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: var(--space-3) var(--space-8);
+    border-radius: var(--radius);
+    border: 1px solid oklch(42% 0.14 355);
+    transition: background-color 200ms cubic-bezier(0.25, 1, 0.5, 1);
+  }
+
+  @media (hover: hover) {
+    .btn-primary:hover {
+      background-color: var(--primary-light);
+    }
+  }
+
+  .btn-primary:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
+  }
+
+  .btn-ghost {
+    display: inline-block;
+    color: var(--text-muted);
+    font-family: var(--body-font);
+    font-size: 0.78rem;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    padding: var(--space-3) var(--space-4);
+    border-radius: var(--radius);
+    border: 1px solid oklch(55% 0.03 20 / 0.35);
+    transition: border-color 200ms, color 200ms;
+  }
+
+  @media (hover: hover) {
+    .btn-ghost:hover {
+      border-color: oklch(72% 0.02 20 / 0.5);
+      color: var(--text-main);
+    }
+  }
+
+  .btn-ghost:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
+  }
+
+  .hero-rating {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    margin-top: var(--space-6);
+  }
+
+  .stars {
+    display: flex;
+    gap: 2px;
+  }
+
+  .star {
+    width: 14px;
+    height: 14px;
+    fill: var(--accent);
+    color: var(--accent);
+  }
+
+  .star.half {
+    fill: none;
+    stroke: var(--accent);
+    stroke-width: 1.5;
+  }
+
+  .rating-text {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    letter-spacing: 0.03em;
+  }
+
+  .rating-number {
+    font-weight: 600;
+    color: var(--text-main);
+    font-variant-numeric: tabular-nums;
+  }
+
+  /* ── SECTION COMMON ── */
+  section {
+    padding: var(--space-16) var(--space-6);
+  }
+
+  .section-label {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    margin-bottom: var(--space-6);
+  }
+
+  .section-label-line {
+    width: 24px;
+    height: 1px;
+    background-color: var(--accent);
+    flex-shrink: 0;
+  }
+
+  .section-label-text {
+    font-size: 0.68rem;
+    font-weight: 600;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--accent);
+  }
+
+  .section-heading {
+    font-family: var(--heading-font);
+    font-size: clamp(2.2rem, 5vw, 3.8rem);
+    font-weight: 300;
+    line-height: 1.05;
+    color: var(--text-main);
+  }
+
+  .section-heading em {
+    font-style: italic;
+    color: var(--accent);
+  }
+
+  /* ── LOCATIONS ── */
+  .locations-section {
+    background-color: var(--dark-mid);
+  }
+
+  .locations-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .locations-header {
+    margin-bottom: var(--space-12);
+  }
+
+  .locations-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-6);
+  }
+
+  @media (min-width: 640px) {
+    .locations-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  .location-item {
+    padding: var(--space-6) 0;
+    border-top: 1px solid oklch(55% 0.03 20 / 0.2);
+  }
+
+  .location-num {
+    font-family: var(--heading-font);
+    font-size: 2.5rem;
+    font-weight: 300;
+    font-style: italic;
+    color: oklch(32% 0.14 355 / 0.5);
+    line-height: 1;
+    margin-bottom: var(--space-3);
+  }
+
+  .location-name {
+    font-family: var(--heading-font);
+    font-size: 1.3rem;
+    font-weight: 500;
+    color: var(--text-main);
+    margin-bottom: var(--space-2);
+    letter-spacing: 0.02em;
+  }
+
+  .location-address {
+    font-size: 0.82rem;
+    color: var(--text-muted);
+    line-height: 1.6;
+  }
+
+  /* ── GALLERY ── */
+  .gallery-section {
+    background-color: var(--dark);
+    padding-top: var(--space-16);
+    padding-bottom: var(--space-16);
+  }
+
+  .gallery-inner {
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+
+  .gallery-header {
+    margin-bottom: var(--space-8);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+  }
+
+  @media (min-width: 768px) {
+    .gallery-header {
+      flex-direction: row;
+      align-items: flex-end;
+      justify-content: space-between;
+    }
+  }
+
+  .gallery-insta {
+    font-size: 0.78rem;
+    color: var(--text-dim);
+    letter-spacing: 0.05em;
+  }
+
+  .gallery-insta a {
+    color: var(--accent);
+    font-weight: 600;
+  }
+
+  @media (hover: hover) {
+    .gallery-insta a:hover {
+      text-decoration: underline;
+    }
+  }
+
+  .gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 3px;
+  }
+
+  @media (min-width: 600px) {
+    .gallery-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  @media (min-width: 900px) {
+    .gallery-grid {
+      grid-template-columns: repeat(5, 1fr);
+    }
+    .gallery-grid .gallery-item:first-child {
+      grid-column: span 2;
+      grid-row: span 2;
+    }
+  }
+
+  .gallery-item {
+    overflow: hidden;
+    aspect-ratio: 1;
+    background-color: var(--dark-surface);
+  }
+
+  .gallery-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 400ms cubic-bezier(0.25, 1, 0.5, 1);
+  }
+
+  @media (hover: hover) {
+    .gallery-item:hover img {
+      transform: scale(1.05);
+    }
+  }
+
+  /* ── INFO STRIP ── */
+  .info-section {
+    background-color: var(--dark-surface);
+    padding: var(--space-16) var(--space-6);
+  }
+
+  .info-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-12);
+  }
+
+  @media (min-width: 768px) {
+    .info-inner {
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-16);
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .info-inner {
+      grid-template-columns: 1.2fr 1fr 1fr;
+    }
+  }
+
+  .info-block-heading {
+    font-family: var(--heading-font);
+    font-size: 1.5rem;
+    font-weight: 400;
+    font-style: italic;
+    color: var(--text-main);
+    margin-bottom: var(--space-4);
+    padding-bottom: var(--space-3);
+    border-bottom: 1px solid oklch(55% 0.03 20 / 0.2);
+  }
+
+  .hours-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .hours-list li {
+    display: flex;
+    justify-content: space-between;
+    gap: var(--space-4);
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    line-height: 1.5;
+  }
+
+  .hours-list li .day {
+    font-weight: 500;
+    color: var(--text-main);
+    flex-shrink: 0;
+    min-width: 90px;
+  }
+
+  .hours-list li .time {
+    font-variant-numeric: tabular-nums;
+    text-align: right;
+  }
+
+  .contact-block {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+  }
+
+  .contact-item {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-1);
+  }
+
+  .contact-label {
+    font-size: 0.65rem;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+  }
+
+  .contact-value {
+    font-size: 0.88rem;
+    color: var(--text-muted);
+    line-height: 1.5;
+  }
+
+  .contact-value a {
+    color: var(--text-main);
+    transition: color 150ms;
+  }
+
+  @media (hover: hover) {
+    .contact-value a:hover {
+      color: var(--accent);
+    }
+  }
+
+  .contact-value a:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+    border-radius: 2px;
+  }
+
+  .social-links {
+    display: flex;
+    gap: var(--space-3);
+    margin-top: var(--space-2);
+  }
+
+  .social-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border-radius: var(--radius);
+    border: 1px solid oklch(55% 0.03 20 / 0.3);
+    color: var(--text-muted);
+    transition: border-color 200ms, color 200ms, background-color 200ms;
+  }
+
+  @media (hover: hover) {
+    .social-link:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+      background-color: oklch(62% 0.12 65 / 0.08);
+    }
+  }
+
+  .social-link:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
+  }
+
+  .social-link svg {
+    width: 16px;
+    height: 16px;
+  }
+
+  .tag-note {
+    font-size: 0.78rem;
+    color: var(--text-dim);
+    margin-top: var(--space-2);
+  }
+
+  .tag-note span {
+    color: var(--accent);
+    font-weight: 500;
+  }
+
+  /* ── FOOTER ── */
+  .site-footer {
+    background-color: var(--dark);
+    border-top: 1px solid oklch(55% 0.03 20 / 0.12);
+    padding: var(--space-8) var(--space-6);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-3);
+    text-align: center;
+  }
+
+  .footer-logo {
+    font-family: var(--heading-font);
+    font-size: 1.5rem;
+    font-weight: 300;
+    font-style: italic;
+    letter-spacing: 0.04em;
+    color: oklch(72% 0.02 20 / 0.6);
+  }
+
+  .footer-address {
+    font-size: 0.75rem;
+    color: var(--text-dim);
+    letter-spacing: 0.04em;
+  }
+
+  .built-by {
+    font-size: 0.65rem;
+    color: oklch(42% 0.02 20);
+    letter-spacing: 0.06em;
+    margin-top: var(--space-2);
+  }
+
+  /* ── ANIMATIONS ── */
+  @media (prefers-reduced-motion: no-preference) {
+    .fade-up {
+      opacity: 0;
+      transform: translateY(24px);
+      animation: fadeUp 500ms cubic-bezier(0.25, 1, 0.5, 1) forwards;
+    }
+
+    .fade-up:nth-child(1) { animation-delay: 0ms; }
+    .fade-up:nth-child(2) { animation-delay: 60ms; }
+    .fade-up:nth-child(3) { animation-delay: 120ms; }
+    .fade-up:nth-child(4) { animation-delay: 180ms; }
+    .fade-up:nth-child(5) { animation-delay: 240ms; }
+
+    @keyframes fadeUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .hero-content > * {
+      opacity: 0;
+      transform: translateY(18px);
+      animation: fadeUp 600ms cubic-bezier(0.25, 1, 0.5, 1) forwards;
+    }
+    .hero-content > *:nth-child(1) { animation-delay: 200ms; }
+    .hero-content > *:nth-child(2) { animation-delay: 320ms; }
+    .hero-content > *:nth-child(3) { animation-delay: 420ms; }
+    .hero-content > *:nth-child(4) { animation-delay: 500ms; }
+    .hero-content > *:nth-child(5) { animation-delay: 580ms; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="site-header" role="banner">
+  <div class="site-logo">Heavenly <span>Couture</span></div>
+  <a href="tel:+13106583831" class="header-cta" aria-label="Call Heavenly Couture">(310) 658-3831</a>
+</header>
+
+<!-- HERO -->
+<section class="hero" aria-label="Hero">
+  <div class="hero-content">
+    <div class="hero-eyebrow">
+      <div class="hero-eyebrow-line"></div>
+      <span class="hero-eyebrow-text">Manhattan Beach, CA</span>
+    </div>
+    <h1 class="hero-heading">Heavenly<br><em>Couture</em></h1>
+    <p class="hero-sub">Fashion boutique with locations across the South Bay. Discover curated styles in Manhattan Beach, Laguna Beach, and Hermosa Beach.</p>
+    <div class="hero-actions">
+      <a href="tel:+13106583831" class="btn-primary">Call to Shop</a>
+      <a href="#locations" class="btn-ghost">Find a Location</a>
+    </div>
+    <div class="hero-rating" aria-label="Rating: 3.8 out of 5 from 17 reviews">
+      <div class="stars" aria-hidden="true">
+        <!-- 3 full stars -->
+        <svg class="star" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><polygon points="8,1 10.2,5.5 15,6.2 11.5,9.5 12.4,14.3 8,12 3.6,14.3 4.5,9.5 1,6.2 5.8,5.5"/></svg>
+        <svg class="star" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><polygon points="8,1 10.2,5.5 15,6.2 11.5,9.5 12.4,14.3 8,12 3.6,14.3 4.5,9.5 1,6.2 5.8,5.5"/></svg>
+        <svg class="star" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><polygon points="8,1 10.2,5.5 15,6.2 11.5,9.5 12.4,14.3 8,12 3.6,14.3 4.5,9.5 1,6.2 5.8,5.5"/></svg>
+        <!-- partial star (0.8) -->
+        <svg class="star" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <defs>
+            <linearGradient id="g38" x1="0" x2="1" y1="0" y2="0">
+              <stop offset="80%" stop-color="oklch(62% 0.12 65)"/>
+              <stop offset="80%" stop-color="transparent"/>
+            </linearGradient>
+          </defs>
+          <polygon points="8,1 10.2,5.5 15,6.2 11.5,9.5 12.4,14.3 8,12 3.6,14.3 4.5,9.5 1,6.2 5.8,5.5" fill="url(#g38)" stroke="oklch(62% 0.12 65)" stroke-width="0.8"/>
+        </svg>
+        <!-- empty star -->
+        <svg class="star" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <polygon points="8,1 10.2,5.5 15,6.2 11.5,9.5 12.4,14.3 8,12 3.6,14.3 4.5,9.5 1,6.2 5.8,5.5" fill="transparent" stroke="oklch(62% 0.12 65)" stroke-width="0.8"/>
+        </svg>
+      </div>
+      <span class="rating-text"><span class="rating-number">3.8</span> · 17 reviews</span>
+    </div>
+  </div>
+</section>
+
+<!-- LOCATIONS -->
+<section class="locations-section" id="locations" aria-labelledby="locations-heading">
+  <div class="locations-inner">
+    <header class="locations-header">
+      <div class="section-label">
+        <div class="section-label-line"></div>
+        <span class="section-label-text">Our Boutiques</span>
+      </div>
+      <h2 class="section-heading" id="locations-heading">Three Coastal<br><em>Locations</em></h2>
+    </header>
+    <div class="locations-grid">
+      <article class="location-item fade-up">
+        <div class="location-num">01</div>
+        <h3 class="location-name">Manhattan Beach</h3>
+        <p class="location-address">221 Manhattan Beach Blvd<br>Manhattan Beach, CA 90266</p>
+      </article>
+      <article class="location-item fade-up">
+        <div class="location-num">02</div>
+        <h3 class="location-name">Laguna Beach</h3>
+        <p class="location-address">252 Forest Ave<br>Laguna Beach, CA</p>
+      </article>
+      <article class="location-item fade-up">
+        <div class="location-num">03</div>
+        <h3 class="location-name">Hermosa Beach</h3>
+        <p class="location-address">31 Pier Ave<br>Hermosa Beach, CA</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section class="gallery-section" id="gallery" aria-labelledby="gallery-heading">
+  <div class="gallery-inner">
+    <header class="gallery-header">
+      <div>
+        <div class="section-label">
+          <div class="section-label-line"></div>
+          <span class="section-label-text">The Collection</span>
+        </div>
+        <h2 class="section-heading" id="gallery-heading">Style in <em>Focus</em></h2>
+      </div>
+      <p class="gallery-insta">
+        Follow us on Instagram<br>
+        <a href="https://www.instagram.com/heavenlycouture/" target="_blank" rel="noopener noreferrer" aria-label="Follow Heavenly Couture on Instagram">@heavenlycouture</a>
+      </p>
+    </header>
+    <div class="gallery-grid" role="list" aria-label="Photo gallery">
+      <div class="gallery-item" role="listitem">
+        <img src="images/photo-1.jpg" alt="Heavenly Couture boutique store view 1" loading="lazy">
+      </div>
+      <div class="gallery-item" role="listitem">
+        <img src="images/photo-2.jpg" alt="Heavenly Couture store photo 2" loading="lazy">
+      </div>
+      <div class="gallery-item" role="listitem">
+        
+      </div>
+      <div class="gallery-item" role="listitem">
+        <img src="images/photo-4.jpg" alt="Heavenly Couture clothing collection 4" loading="lazy">
+      </div>
+      <div class="gallery-item" role="listitem">
+        <img src="images/photo-5.jpg" alt="Heavenly Couture boutique styling 5" loading="lazy">
+      </div>
+      <div class="gallery-item" role="listitem">
+        
+      </div>
+      <div class="gallery-item" role="listitem">
+        
+      </div>
+      <div class="gallery-item" role="listitem">
+        
+      </div>
+      <div class="gallery-item" role="listitem">
+        
+      </div>
+      <div class="gallery-item" role="listitem">
+        <img src="images/photo-10.jpg" alt="Heavenly Couture style showcase 10" loading="lazy">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- INFO: HOURS + CONTACT -->
+<section class="info-section" aria-labelledby="info-heading">
+  <div class="info-inner">
+
+    <!-- Hours -->
+    <div>
+      <h2 class="info-block-heading" id="info-heading">Store Hours</h2>
+      <ul class="hours-list" aria-label="Store hours">
+        <li><span class="day">Monday</span><span class="time">9:30 AM – 10:00 PM</span></li>
+        <li><span class="day">Tuesday</span><span class="time">9:30 AM – 10:00 PM</span></li>
+        <li><span class="day">Wednesday</span><span class="time">9:30 AM – 10:00 PM</span></li>
+        <li><span class="day">Thursday</span><span class="time">9:30 AM – 10:00 PM</span></li>
+        <li><span class="day">Friday</span><span class="time">9:00 AM – 10:00 PM</span></li>
+        <li><span class="day">Saturday</span><span class="time">9:00 AM – 10:00 PM</span></li>
+        <li><span class="day">Sunday</span><span class="time">9:00 AM – 10:00 PM</span></li>
+      </ul>
+    </div>
+
+    <!-- Contact -->
+    <div>
+      <h2 class="info-block-heading">Contact</h2>
+      <div class="contact-block">
+        <div class="contact-item">
+          <span class="contact-label">Phone</span>
+          <span class="contact-value"><a href="tel:+13106583831">(310) 658-3831</a></span>
+        </div>
+        <div class="contact-item">
+          <span class="contact-label">Main Location</span>
+          <span class="contact-value">221 Manhattan Beach Blvd<br>Manhattan Beach, CA 90266</span>
+        </div>
+        <div class="contact-item">
+          <span class="contact-label">Rating</span>
+          <span class="contact-value">3.8 stars · 17 reviews</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Social -->
+    <div>
+      <h2 class="info-block-heading">Follow Along</h2>
+      <div class="contact-block">
+        <div class="contact-item">
+          <span class="contact-label">Instagram</span>
+          <div class="social-links">
+            <a
+              href="https://www.instagram.com/heavenlycouture/"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="social-link"
+              aria-label="Follow Heavenly Couture on Instagram"
+            >
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+                <circle cx="12" cy="12" r="4"/>
+                <circle cx="17.5" cy="6.5" r="0.8" fill="currentColor" stroke="none"/>
+              </svg>
+            </a>
+          </div>
+          <p class="tag-note">Tag us <span>@heavenlycouture</span></p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="site-footer" role="contentinfo">
+  <div class="footer-logo">Heavenly Couture</div>
+  <p class="footer-address">221 Manhattan Beach Blvd · Manhattan Beach, CA 90266</p>
+  <p class="built-by">Built by Claire Sersun</p>
+</footer>
+
+</body>
+</html>
